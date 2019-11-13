@@ -6,13 +6,14 @@
 
     <groupId>io.yodo</groupId>
     <artifactId>whisper-commons</artifactId>
-    <version>1.0</version>
+    <version>0.1.1</version>
 
     <name>whisper-commons</name>
     <description>Common components for Whisper</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
