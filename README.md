@@ -23,3 +23,11 @@ git tag -a $TAG -m"Release $TAG"
 mvn clean deploy
 git push origin $TAG
 ```
+
+## Utils
+
+### Get Current Version
+
+```sh
+mvn -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec -q
+```
