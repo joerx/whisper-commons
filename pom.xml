@@ -15,7 +15,7 @@
 
     <groupId>io.yodo</groupId>
     <artifactId>whisper-commons</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 
     <name>whisper-commons</name>
     <description>Common components for Whisper</description>
