@@ -18,11 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @SuppressWarnings("unused")
-public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    public JWTAuthenticationFilter(RequestMatcher requiresAuthenticationRequestMatcher) {
+    public AuthenticationFilter(RequestMatcher requiresAuthenticationRequestMatcher) {
         super(requiresAuthenticationRequestMatcher);
     }
 
@@ -42,7 +42,7 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
         String token = tokenHeader.replaceFirst("Bearer\\s+", "").trim();
         log.debug("Found a token, will try to authenticate");
 
-        JWTTokenAuthentication auth = new JWTTokenAuthentication(token);
+        TokenAuthentication auth = new TokenAuthentication(token);
         return getAuthenticationManager().authenticate(auth);
     }
 

@@ -7,15 +7,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @SuppressWarnings("WeakerAccess")
-public class JWTTokenAuthentication implements Authentication {
+public class TokenAuthentication implements Authentication {
 
     private String token;
 
     private UserDetails userDetails;
 
+    private TokenDetails tokenDetails;
+
     private boolean authenticated;
 
-    public JWTTokenAuthentication(String token) {
+    public TokenAuthentication(String token) {
         this.token = token;
     }
 
@@ -56,5 +58,13 @@ public class JWTTokenAuthentication implements Authentication {
     @Override
     public String getName() {
         return userDetails.getUsername();
+    }
+
+    public TokenDetails getTokenDetails() {
+        return tokenDetails;
+    }
+
+    public void setTokenDetails(TokenDetails tokenDetails) {
+        this.tokenDetails = tokenDetails;
     }
 }
