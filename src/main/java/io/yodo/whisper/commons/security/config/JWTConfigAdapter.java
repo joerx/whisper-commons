@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
  * config that is not known to clients that merely want to decode tokens, such as private keys.
  */
 @SuppressWarnings("unused")
-public abstract class JWTDecoderConfigSupport {
+public abstract class JWTConfigAdapter {
 
     private String issuer;
 

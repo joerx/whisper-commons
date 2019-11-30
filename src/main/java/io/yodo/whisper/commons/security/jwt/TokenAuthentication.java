@@ -64,6 +64,10 @@ public class TokenAuthentication implements Authentication {
         return tokenDetails;
     }
 
+    public String getToken() {
+        return token;
+    }
+
     public void setTokenDetails(TokenDetails tokenDetails) {
         this.tokenDetails = tokenDetails;
     }

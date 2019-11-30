@@ -1,12 +1,12 @@
 package io.yodo.whisper.commons.security.jwt;
 
+import io.yodo.whisper.commons.security.userdetails.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -48,6 +48,6 @@ public class AuthenticationManager implements org.springframework.security.authe
         Collection<GrantedAuthority> scopes = Arrays.stream(td.getScopes())
                 .map(s -> new SimpleGrantedAuthority("SCOPE_"+s))
                 .collect(Collectors.toUnmodifiableSet());
-        return new User(td.getSubject(), "", scopes);
+        return new User(td.getSubject(), scopes);
     }
 }
