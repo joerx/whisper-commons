@@ -54,7 +54,7 @@ public class TokenDecoder {
 
     private DecodedJWT decodeJWT(String token) {
         try {
-            Algorithm algo = tokenHelper.makeAlgo();
+            Algorithm algo = tokenHelper.makeVerifierAlgo();
             JWTVerifier ver = JWT.require(algo)
                     .withIssuer(issuer)
                     .build();

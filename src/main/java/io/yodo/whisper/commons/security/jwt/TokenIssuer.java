@@ -39,7 +39,7 @@ public class TokenIssuer {
         log.debug("Issue token with issuer " + issuer + " valid until " + exp);
 
         // issue JWT
-        Algorithm algo = tokenHelper.makeAlgo();
+        Algorithm algo = tokenHelper.makeIsserAlgo();
         return JWT.create()
                 .withIssuer(issuer)
                 .withSubject(name)
