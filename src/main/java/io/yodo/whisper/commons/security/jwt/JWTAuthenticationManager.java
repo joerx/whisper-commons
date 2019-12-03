@@ -13,13 +13,13 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
-public class AuthenticationManager implements org.springframework.security.authentication.AuthenticationManager {
+public class JWTAuthenticationManager implements org.springframework.security.authentication.AuthenticationManager {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     private final TokenDecoder tokenDecoder;
 
-    public AuthenticationManager(TokenDecoder tokenDecoder) {
+    public JWTAuthenticationManager(TokenDecoder tokenDecoder) {
         this.tokenDecoder = tokenDecoder;
     }
     

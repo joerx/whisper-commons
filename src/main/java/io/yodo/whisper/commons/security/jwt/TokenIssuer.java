@@ -7,23 +7,23 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("WeakerAccess")
 public class TokenIssuer {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private final TokenHelper tokenHelper;
+    private final Algorithm algo;
 
     private final String issuer;
 
     private final int tokenValidityMinutes;
 
-    public TokenIssuer(TokenHelper tokenHelper, String issuer) {
-        this(tokenHelper, issuer, 60);
+    public TokenIssuer(Algorithm algo, String issuer) {
+        this(algo, issuer, 60);
     }
 
-    public TokenIssuer(TokenHelper tokenHelper, String issuer, int tokenValidityMinutes) {
-        this.tokenHelper = tokenHelper;
+    public TokenIssuer(Algorithm algo, String issuer, int tokenValidityMinutes) {
+        this.algo = algo;
         this.issuer = issuer;
         this.tokenValidityMinutes = tokenValidityMinutes;
     }
@@ -39,7 +39,6 @@ public class TokenIssuer {
         log.debug("Issue token with issuer " + issuer + " valid until " + exp);
 
         // issue JWT
-        Algorithm algo = tokenHelper.makeIsserAlgo();
         return JWT.create()
                 .withIssuer(issuer)
                 .withSubject(name)

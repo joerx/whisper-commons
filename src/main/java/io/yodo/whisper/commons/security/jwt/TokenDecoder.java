@@ -13,12 +13,12 @@ public class TokenDecoder {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private final TokenHelper tokenHelper;
+    private final Algorithm algo;
 
     private final String issuer;
 
-    public TokenDecoder(TokenHelper tokenHelper, String issuer) {
-        this.tokenHelper = tokenHelper;
+    public TokenDecoder(Algorithm algo, String issuer) {
+        this.algo = algo;
         this.issuer = issuer;
     }
 
@@ -54,7 +54,6 @@ public class TokenDecoder {
 
     private DecodedJWT decodeJWT(String token) {
         try {
-            Algorithm algo = tokenHelper.makeVerifierAlgo();
             JWTVerifier ver = JWT.require(algo)
                     .withIssuer(issuer)
                     .build();
