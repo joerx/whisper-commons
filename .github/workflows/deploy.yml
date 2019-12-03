@@ -19,4 +19,4 @@ jobs:
       - run: mkdir -p $HOME/.m2 && cp ./.github/workflows/settings.xml $HOME/.m2/settings.xml
       - run: mvn --no-transfer-progress help:effective-settings
       - run: mvn --no-transfer-progress clean test
-#      - run: mvn --no-transfer-progress deploy -Drevision=${GIT_TAG}
+      - run: mvn --no-transfer-progress deploy -Drevision=0.4.3
