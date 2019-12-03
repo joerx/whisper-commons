@@ -18,6 +18,6 @@ jobs:
       - uses: actions/checkout@v1
       - run: mkdir -p $HOME/.m2 && cp ./.github/workflows/settings.xml $HOME/.m2/settings.xml
       - run: |
-          REVISION=${REF#refs/tags/v}
+          REVISION=${GIT_REF#refs/tags/v}
           echo "Deploying ${REVISION}"
           mvn --no-transfer-progress -Drevision=${REVISION} deploy
