@@ -8,9 +8,9 @@
     <pluginGroups/>
     <servers>
         <server>
-            <id>bintray-joerx-whisper</id>
-            <username>${env.BINTRAY_USERNAME}</username>
-            <password>${env.BINTRAY_API_KEY}</password>
+            <id>github</id>
+            <username>${env.GITHUB_USERNAME}</username>
+            <password>${env.GITHUB_TOKEN}</password>
         </server>
     </servers>
     <mirrors>

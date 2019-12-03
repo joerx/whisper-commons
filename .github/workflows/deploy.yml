@@ -14,8 +14,10 @@ jobs:
     env:
       JAVA_HOME: /usr/lib/jvm/zulu-12-azure-amd64
       GIT_TAG: ${{ github.ref }}
+      GITHUB_USERNAME: x-access-token
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v1
-#      - run: mkdir -p $HOME/.m2 && cp ./.github/workflows/settings.xml $HOME/.m2/settings.xml
-#      - run: mvn --no-transfer-progress help:effective-settings
+      - run: mkdir -p $HOME/.m2 && cp ./.github/workflows/settings.xml $HOME/.m2/settings.xml
+      - run: mvn --no-transfer-progress help:effective-settings
       - run: mvn --no-transfer-progress deploy -Drevision=0.5.0-r2
