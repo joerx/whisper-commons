@@ -16,7 +16,7 @@ jobs:
       GIT_TAG: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v1
-      - run: mkdir -p $HOME/.m2/settings.xml && cp ./.github/workflows/settings.xml $HOME/.m2/settings.xml
+      - run: mkdir -p $HOME/.m2 && cp ./.github/workflows/settings.xml $HOME/.m2/settings.xml
       - run: mvn --no-transfer-progress help:effective-settings
       - run: mvn --no-transfer-progress clean test
 #      - run: mvn --no-transfer-progress deploy -Drevision=${GIT_TAG}
