@@ -8,7 +8,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings({"unused"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class TokenDecoder {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -61,5 +61,13 @@ public class TokenDecoder {
         } catch (JWTVerificationException ex) {
             throw new InvalidAuthenticationException(ex);
         }
+    }
+
+    public Algorithm getAlgo() {
+        return algo;
+    }
+
+    public String getIssuer() {
+        return issuer;
     }
 }

@@ -1,45 +1,51 @@
 package io.yodo.whisper.commons.security.config;
 
 import com.auth0.jwt.algorithms.Algorithm;
-import io.yodo.whisper.commons.security.jwt.TokenDecoder;
 import io.yodo.whisper.commons.security.jwt.AlgoHelper;
+import io.yodo.whisper.commons.security.jwt.TokenDecoder;
+import io.yodo.whisper.commons.security.jwt.TokenIssuer;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ResourceLoader;
 
-/**
- * Support class for token config. Only provides a method to create the token decoder. For a token issuer, interested
- * parties need to create an instance themselves. This is due to the fact that the issuer might require additional
- * config that is not known to clients that merely want to decode tokens, such as private keys.
- */
-@SuppressWarnings("unused")
-public abstract class JWTConfigAdapter {
+@Configuration
+@ConfigurationProperties("security.jwt")
+@SuppressWarnings("SpringFacetCodeInspection")
+public class JWTConfigAdapter {
 
     private String issuer;
 
-    private String secret;
+    private String publicKey;
+
+    private String privateKey;
+
+    @Bean
+    public AlgoHelper algoHelper(ResourceLoader resourceLoader) {
+        return new AlgoHelper(resourceLoader);
+    }
+
+    @Bean
+    public TokenDecoder tokenDecoder(AlgoHelper algoHelper) {
+        Algorithm algo = algoHelper.makeRSA(publicKey);
+        return new TokenDecoder(algo, issuer);
+    }
+
+    @Bean
+    public TokenIssuer tokenIssuer(AlgoHelper algoHelper) {
+        Algorithm algo = algoHelper.makeRSA(publicKey, privateKey);
+        return new TokenIssuer(algo, issuer);
+    }
+
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
 
     public void setIssuer(String issuer) {
         this.issuer = issuer;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    protected String getIssuer() {
-        return issuer;
-    }
-
-    protected String getSecret() {
-        return secret;
-    }
-
-    @Bean
-    public AlgoHelper tokenHelper() {
-        return new AlgoHelper();
-    }
-
-    @Bean
-    public TokenDecoder tokenDecoder(Algorithm AlgorithmHelper) {
-        return new TokenDecoder(AlgorithmHelper, issuer);
     }
 }

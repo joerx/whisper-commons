@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class TokenIssuer {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -46,5 +46,13 @@ public class TokenIssuer {
                 .withNotBefore(nbf)
                 .withExpiresAt(exp)
                 .sign(algo);
+    }
+
+    public Algorithm getAlgo() {
+        return algo;
+    }
+
+    public String getIssuer() {
+        return issuer;
     }
 }

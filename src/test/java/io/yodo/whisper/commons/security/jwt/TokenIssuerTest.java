@@ -26,12 +26,12 @@ class TokenIssuerTest {
     private ResourceLoader resourceLoader;
 
     TokenIssuerTest() {
-        resourceLoader = new AnnotationConfigApplicationContext("io.yodo.whisper.commons");
+        resourceLoader = new AnnotationConfigApplicationContext();
     }
 
     @Test
     void testCanDecodeIssuedTokenUsingHMAC() {
-        Algorithm algo = new AlgoHelper().makeHMAC(SECRET);
+        Algorithm algo = new AlgoHelper(resourceLoader).makeHMAC(SECRET);
         TokenIssuer issuer = new TokenIssuer(algo, ISSUER);
 
         String token = issuer.issueToken(NAME);
@@ -58,9 +58,7 @@ class TokenIssuerTest {
 
     @Test
     void testCanDecodeIssuedTokenUsingRSA() {
-        Resource privKey = resourceLoader.getResource(PRIVATE_KEY_PATH);
-        Resource pubKey = resourceLoader.getResource(PUBLIC_KEY_PATH);
-        Algorithm algo = new AlgoHelper().makeRSA(pubKey, privKey);
+        Algorithm algo = new AlgoHelper(resourceLoader).makeRSA(PUBLIC_KEY_PATH, PRIVATE_KEY_PATH);
         TokenIssuer issuer = new TokenIssuer(algo, ISSUER);
 
         String token = issuer.issueToken(NAME);
@@ -75,15 +73,13 @@ class TokenIssuerTest {
 
     @Test
     void testCanDecodeIssuedTokenUsingRSAWithPublicKeyOnly() {
-        Resource privKey = resourceLoader.getResource(PRIVATE_KEY_PATH);
-        Resource pubKey = resourceLoader.getResource(PUBLIC_KEY_PATH);
-        Algorithm algo = new AlgoHelper().makeRSA(pubKey, privKey);
+        Algorithm algo = new AlgoHelper(resourceLoader).makeRSA(PUBLIC_KEY_PATH, PRIVATE_KEY_PATH);
         TokenIssuer issuer = new TokenIssuer(algo, ISSUER);
 
         String token = issuer.issueToken(NAME);
         assertNotNull(token);
 
-        Algorithm algo2 = new AlgoHelper().makeRSA(pubKey);
+        Algorithm algo2 = new AlgoHelper(resourceLoader).makeRSA(PUBLIC_KEY_PATH);
         DecodedJWT d = JWT.require(algo2).withIssuer(ISSUER).build().verify(token);
 
         assertEquals(NAME, d.getSubject());
