@@ -69,9 +69,9 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-joerx-whisper</id>
-            <name>joerx-whisper</name>
-            <url>https://api.bintray.com/maven/joerx/whisper/whisper-commons/;publish=1</url>
+            <id>github</id>
+            <name>whisper</name>
+            <url>https://maven.pkg.github.com/joerx/whisper-commons</url>
         </repository>
     </distributionManagement>
 </project>
