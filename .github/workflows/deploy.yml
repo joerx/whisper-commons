@@ -16,6 +16,6 @@ jobs:
       GIT_TAG: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v1
-      - run: cat $HOME/.m2/settings.xml
+      - run: mvn --no-transfer-progress -X help:effective-settings
       - run: mvn --no-transfer-progress clean test
 #      - run: mvn --no-transfer-progress deploy -Drevision=${GIT_TAG}
