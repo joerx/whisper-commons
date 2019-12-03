@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  test:
+    name: Test and deploy
+    runs-on: ubuntu-18.04
+    env:
+      JAVA_HOME: /usr/lib/jvm/zulu-12-azure-amd64
+      GIT_REF: ${{ github.ref }}
+      GITHUB_USERNAME: x-access-token
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v1
+      - run: mkdir -p $HOME/.m2 && cp ./.github/workflows/settings.xml $HOME/.m2/settings.xml
+      - run: mvn --no-transfer-progress deploy -Drevision=${GIT_REF#v}

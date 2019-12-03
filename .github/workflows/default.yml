@@ -1,10 +1,10 @@
-name: Test and build
+name: Build and test
 
 on: push
 
 jobs:
   test:
-    name: Maven tests
+    name: Maven build and test
     runs-on: ubuntu-18.04
     env:
       JAVA_HOME: /usr/lib/jvm/zulu-12-azure-amd64

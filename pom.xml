@@ -15,7 +15,7 @@
 
     <groupId>io.yodo</groupId>
     <artifactId>whisper-commons</artifactId>
-    <version>0.5.0-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <name>whisper-commons</name>
     <description>Common components for Whisper</description>
@@ -23,6 +23,8 @@
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- default version for local development -->
+        <revision>1.0-SNAPSHOT</revision>
     </properties>
 
     <dependencies>
@@ -67,9 +69,9 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-joerx-whisper</id>
-            <name>joerx-whisper</name>
-            <url>https://api.bintray.com/maven/joerx/whisper/whisper-commons/;publish=1</url>
+            <id>github</id>
+            <name>whisper</name>
+            <url>https://maven.pkg.github.com/joerx/whisper-commons</url>
         </repository>
     </distributionManagement>
 </project>
