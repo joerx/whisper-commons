@@ -24,6 +24,21 @@ mvn clean deploy
 git push origin $TAG
 ```
 
+## Generating Keys
+
+For some annoying reason that only the great wizards at the oracle of senseless complexity understand, keys must be
+in PKCS#8 format. Because fuck you, we're different.
+
+To generate keys in PKCS#8 format (based on https://stackoverflow.com/questions/11410770/load-rsa-public-key-from-file):
+
+```bash
+$ openssl genrsa -out private_key.pem 2048
+
+$ openssl pkcs8 -topk8 -inform PEM -outform DER -in private_key.pem -out private_key.der -nocrypt
+
+$ openssl rsa -in private_key.pem -pubout -outform DER -out public_key.der
+``` 
+
 ## Utils
 
 ### Get Current Version

@@ -18,11 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @SuppressWarnings("unused")
-public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    public AuthenticationFilter(RequestMatcher requiresAuthenticationRequestMatcher) {
+    public JWTAuthenticationFilter(RequestMatcher requiresAuthenticationRequestMatcher) {
         super(requiresAuthenticationRequestMatcher);
     }
 

@@ -1,7 +1,8 @@
 package io.yodo.whisper.commons.security.config;
 
+import com.auth0.jwt.algorithms.Algorithm;
 import io.yodo.whisper.commons.security.jwt.TokenDecoder;
-import io.yodo.whisper.commons.security.jwt.TokenHelper;
+import io.yodo.whisper.commons.security.jwt.AlgoHelper;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -33,12 +34,12 @@ public abstract class JWTConfigAdapter {
     }
 
     @Bean
-    public TokenHelper tokenHelper() {
-        return new TokenHelper(secret);
+    public AlgoHelper tokenHelper() {
+        return new AlgoHelper();
     }
 
     @Bean
-    public TokenDecoder tokenDecoder(TokenHelper tokenHelper) {
-        return new TokenDecoder(tokenHelper, issuer);
+    public TokenDecoder tokenDecoder(Algorithm AlgorithmHelper) {
+        return new TokenDecoder(AlgorithmHelper, issuer);
     }
 }
