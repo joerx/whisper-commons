@@ -24,7 +24,7 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- default version for local development -->
-        <revision>0.5-SNAPSHOT</revision>
+        <revision>0.6.1-SNAPSHOT</revision>
     </properties>
 
     <dependencies>

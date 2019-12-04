@@ -7,12 +7,13 @@ import io.yodo.whisper.commons.security.jwt.TokenIssuer;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.ResourceLoader;
 
 @Configuration
 @ConfigurationProperties("security.jwt")
 @SuppressWarnings("SpringFacetCodeInspection")
-public class JWTConfigAdapter {
+public class JWTConfig {
 
     private String issuer;
 
@@ -25,12 +26,14 @@ public class JWTConfigAdapter {
         return new AlgoHelper(resourceLoader);
     }
 
+    @Lazy
     @Bean
     public TokenDecoder tokenDecoder(AlgoHelper algoHelper) {
         Algorithm algo = algoHelper.makeRSA(publicKey);
         return new TokenDecoder(algo, issuer);
     }
 
+    @Lazy
     @Bean
     public TokenIssuer tokenIssuer(AlgoHelper algoHelper) {
         Algorithm algo = algoHelper.makeRSA(publicKey, privateKey);

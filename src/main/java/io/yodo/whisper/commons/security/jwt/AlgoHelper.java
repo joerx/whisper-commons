@@ -16,7 +16,6 @@ import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
-@Component
 @SuppressWarnings("WeakerAccess")
 public class AlgoHelper {
 
