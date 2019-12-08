@@ -5,11 +5,14 @@ import java.util.Date;
 @SuppressWarnings("unused")
 public class ErrorResponse {
 
-    private final String message;
+    private String message;
 
-    private final String type;
+    private String type;
 
-    private final Date timestamp;
+    private Date timestamp;
+
+    public ErrorResponse() {
+    }
 
     public ErrorResponse(Exception e) {
         this.message = e.getMessage();
@@ -27,5 +30,17 @@ public class ErrorResponse {
 
     public Date getTimestamp() {
         return timestamp;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }
